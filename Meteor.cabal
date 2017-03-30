@@ -30,7 +30,7 @@ executable Meteor
                      , either
                      , errors
                      , lens
-                     , sdl2
+                     , sdl2 >= 2.2.0
                      , text
                      , bytestring
                      , containers >= 0.5.5

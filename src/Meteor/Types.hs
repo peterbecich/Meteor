@@ -15,7 +15,9 @@ import           Control.Monad.Trans.Either (EitherT (..), runEitherT)
 
 import           Data.Bool                  (bool)
 import           Data.Word                  (Word8)
-import           Graphics.UI.SDL            (Rect, Renderer, Window)
+import           SDL.Video.Renderer         (Rectangle)
+import           SDL.Video.Renderer         (Renderer)
+import           SDL.Internal.Types         (Window)
 
 import           Data.Map                   (Map)
 import           Data.Vector                (Vector)
@@ -36,7 +38,7 @@ data ActorType
   deriving (Show,Eq)
 
 data Actor = Actor
-  { _actorRect :: Rect
+  { _actorRect :: Rectangle
   , _actorType :: ActorType
   } deriving (Show,Eq)
 makeLenses ''Actor
@@ -50,7 +52,7 @@ data MeteorS = MeteorS
   { _meteorWindow   :: Window
   , _meteorRenderer :: Renderer
   , _meteorPlayer   :: (Player,Col)
-  , _meteorMissiles :: Vector Rect
+  , _meteorMissiles :: Vector Rectangle
   , _meteorMobs     :: ActorMap
   , _gameover       :: Bool
   }
@@ -84,9 +86,9 @@ instance HasSDLErr (EitherT SDLErr IO) where
 type Et a = EitherT SDLErr IO a
 
 class HasRect a where
-    getRect :: a -> Rect
+    getRect :: a -> Rectangle
 
-instance HasRect Rect where
+instance HasRect Rectangle where
     getRect = id
 
 instance HasRect Actor where

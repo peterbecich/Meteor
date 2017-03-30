@@ -1,5 +1,5 @@
 flags: {}
 packages:
 - '.'
-extra-deps: []
-resolver: lts-3.14
+extra-deps: [sdl2-2.2.0]
+resolver: lts-8.6
